@@ -117,3 +117,6 @@ console.log(s.head)
 console.log(size)
 console.log(s.toString())
 console.log(s.find('A'))
+console.log(s.tail());
+console.log(s.at(3))
+console.log(s.pop());
