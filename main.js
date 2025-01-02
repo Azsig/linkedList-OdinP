@@ -7,14 +7,14 @@ const Node = (Data = null)=>{
 
 function LinkedLIst (Head) {
     let head = Head
-    let size = () => {
-        let count = 0; 
+    function size(){
+        let countNum = 0; 
         let node = head;
         while (node) {
-            count++;
+            countNum++;
             node = node.next
         }
-        return count;
+        return countNum;
     }
     let append = (value) => {
         let node = head
@@ -24,8 +24,9 @@ function LinkedLIst (Head) {
         node.next = Node(value);
     }
     let prepend = (value) =>{
-        let newHead = value;
-        this.head = newHead;
+        let newHead = Node(value);
+        newHead.next = head
+        head = newHead;
     }
     function at(index){
         let count = 0; 
@@ -49,7 +50,7 @@ function LinkedLIst (Head) {
         return data
     }
 
-    let contain = value =>{
+    let contain = (value)=>{
         let count = 0; 
         let node = head;
         while (node) {
@@ -62,7 +63,7 @@ function LinkedLIst (Head) {
         return false
     }
 
-    let find = value =>{
+    let find = (value) =>{
         let count = 0; 
         let node = head;
         while (node) {
@@ -93,17 +94,26 @@ function LinkedLIst (Head) {
         let node = head;
         while (node) {
             text += node.data;
+            if(node.next == null){
+                break;
+            }
             text += ' -> '
             node = node.next
         }
         return text
     }
-    return {head, size, append, prepend, at, tail, pop, toString}
+    return {head, size, append, prepend, at, tail, pop, toString, find, contain}
 }
 
 let s = LinkedLIst(Node('s'))
 s.append('j')
+s.append('r')
+s.prepend('A')
+
+let size = s.size()
 
 
 console.log(s.head)
+console.log(size)
 console.log(s.toString())
+console.log(s.find('A'))
